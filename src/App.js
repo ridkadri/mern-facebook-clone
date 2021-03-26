@@ -1,9 +1,13 @@
 import './App.css';
+import Header from './components/header/header';
 
 function App() {
   return (
     <div className="app">
-      <h1>Facebook MERN</h1>
+      <Header/>
+        {/* sidebar */}
+        {/* feed */}
+        {/* widgets */}
     </div>
   );
 }
