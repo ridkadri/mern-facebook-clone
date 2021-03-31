@@ -17,6 +17,14 @@ Grid.mongo = mongoose.mongo
 const app = express()
 const port = process.env.PORT || 9000
 
+const pusher = new Pusher({
+    appId: "1180709",
+    key: "f46500a5505adda273fa",
+    secret: "5249fb4976c088ab18a6",
+    cluster: "us3",
+    useTLS: true
+});
+
 //middlewares
 app.use(bodyParser.json());
 app.use(cors())
@@ -30,6 +38,32 @@ const conn = mongoose.createConnection(mongoURI, {
     useUnifiedTopology: true
 })
 
+mongoose.connect(mongoURI, {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+
+mongoose.connection.once('open',() => {
+    console.log('DB Connected')
+
+    const changeStream = mongoose.connection.collection('posts').watch()
+
+    changeStream.on('change',(change) => {
+        console.log(change)
+
+        if(change.operationType === 'insert') {
+            console.log('Triggering Pusher')
+
+            pusher.trigger('posts', 'inserted', {
+                change: change
+            })
+        } else {
+            console.log('Error triggering Pusher')
+        }
+    })
+})
+
 let gfs
 
 conn.once('open', () => {
@@ -39,13 +73,6 @@ conn.once('open', () => {
     gfs.collection('images')
 })
 
-
-
-mongoose.connect(mongoURI, {
-    useCreateIndex: true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
 
 const storage = new GridFsStorage({
     url: mongoURI,

@@ -3,9 +3,14 @@ import React from 'react';
 const Widget = () => {
     return (
         <div className='widgets'>
-            <iframe src='https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fkadmarts%2Fposts%2F1384787225207512&width=500&show_text=true&appId=218331294852186&height=418'
+            <iframe 
+                src="https://www.facebook.com/plugins/page.php?
+                href=https%3A%2F%2Fwww.facebook.com%2FTheBrymaShows%
+                2F&tabs=timeline&width=340&height=500&small_header=false
+                &adapt_container_width=true&hide_cover=false&show_facepile
+                =true&appId=218331294852186"
                 width='340'
-                height='1500'
+                height='100%'
                 style={{border: 'none', overflow: 'hidden'}}
                 scrolling='no'
                 frameborder='0'

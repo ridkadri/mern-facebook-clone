@@ -8,22 +8,34 @@ import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import NearMeIcon from '@material-ui/icons/NearMe';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
-const Post = ({profilePic, message, timeStamp, imgName, username}) => {
+const Post = ({profilePic, message, timestamp, imgName, username}) => {
+    console.log(timestamp)
     return (
         <div className='post'>
             <div className='post_top'>
                 <Avatar src={profilePic} className='post_avatar'/>
                 <div className='post_topInfo'>
                     <h3>{username}</h3>
-                    <p>{new Date(parseInt(timeStamp)).toUTCString()}</p>
+                    <p>{new Date(parseInt(timestamp)).toUTCString()}</p>
                     
                 </div> 
             </div>
 
             <div className='post_bottom'>
                 <p>{message}</p>
-                {/*image is coming later */}
             </div>
+
+            {
+                imgName ? (
+                    <div className='post_image'>
+                        <img src={`http://localhost:9000/retrieve/images/single?name=${imgName}`} alt=''/>
+                    </div>
+                ) : (
+                    console.log('DEBUG >>> no image here')
+                )
+            }
+
+            
             
             <div className='post_options'>
                         <div className='post_option'>

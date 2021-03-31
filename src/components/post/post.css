@@ -36,6 +36,11 @@
   padding: 15px 25px;
 }
 
+.post_topInfo > p {
+  font-size: medium;
+  color: gray;
+}
+
 .post_options {
   padding: 10px;
   border-top: 1px solid lightgray;
@@ -62,9 +67,4 @@
 .post_option:hover {
   background-color: #eff2f5;
   border-radius: 10px;
-}
-
-.post_topInfo > p {
-  font-size: medium;
-  color: gray;
 }
