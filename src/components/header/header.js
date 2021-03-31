@@ -51,7 +51,7 @@ const Header = () => {
 
             <div className='header_right'>
                 <div className='header_info'>
-                    <Avatar/>
+                    <Avatar src="https://ridkadri.com/static/rid.5801c40167.jpg"/>
                     <h4>Ridwan</h4>
 
                     <IconButton>
